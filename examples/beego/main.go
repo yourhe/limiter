@@ -5,8 +5,8 @@ https://gist.github.com/gadelkareem/5a087bfda1f673241d0ac65759156cfd
 */
 import (
 	"github.com/astaxie/beego"
-	"github.com/ulule/limiter"
-	"github.com/ulule/limiter/drivers/store/memory"
+	"github.com/yourhe/limiter"
+	"github.com/yourhe/limiter/drivers/store/memory"
 	"github.com/astaxie/beego/context"
 	"net/http"
 	"strconv"

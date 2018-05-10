@@ -9,9 +9,9 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/ulule/limiter"
-	"github.com/ulule/limiter/drivers/middleware/stdlib"
-	"github.com/ulule/limiter/drivers/store/memory"
+	"github.com/yourhe/limiter"
+	"github.com/yourhe/limiter/drivers/middleware/stdlib"
+	"github.com/yourhe/limiter/drivers/store/memory"
 )
 
 func TestHTTPMiddleware(t *testing.T) {

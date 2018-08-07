@@ -54,3 +54,15 @@ func (store *Store) Peek(ctx context.Context, key string, rate limiter.Rate) (li
 	lctx := common.GetContextFromState(now, rate, expiration, count)
 	return lctx, nil
 }
+
+// Update returns the limit for given identifier, without modification on current values.
+func (store *Store) Update(ctx context.Context, key string, value int64, rate limiter.Rate) (limiter.Context, error) {
+	key = fmt.Sprintf("%s:%s", store.Prefix, key)
+	now := time.Now()
+	count, expiration := store.cache.Get(key, rate.Period)
+	if value-count > 0 {
+		count, expiration = store.cache.Increment(key, value-count, rate.Period)
+	}
+	lctx := common.GetContextFromState(now, rate, expiration, count)
+	return lctx, nil
+}

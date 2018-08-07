@@ -46,7 +46,7 @@ func (middleware *Middleware) Handle(c *gin.Context) {
 
 	c.Header("X-RateLimit-Limit", strconv.FormatInt(context.Limit, 10))
 	c.Header("X-RateLimit-Remaining", strconv.FormatInt(context.Remaining, 10))
-	c.Header("X-RateLimit-Reset", strconv.FormatInt(context.Reset, 10))
+	c.Header("X-RateLimit-Reset", strconv.FormatInt(context.ResetT, 10))
 
 	if context.Reached {
 		middleware.OnLimitReached(c)

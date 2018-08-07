@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package limiter;
+// Limit     int64 
+// Remaining int64
+// Reset     int64
+// Reached   bool
+message Context {
+    int64 limit = 1;
+    int64 remaining = 2;
+    int64 resetT = 3;
+    bool reached = 4;
+ 
+
+}

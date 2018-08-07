@@ -8,13 +8,13 @@ import (
 // Context
 // -----------------------------------------------------------------
 
-// Context is the limit context.
-type Context struct {
-	Limit     int64
-	Remaining int64
-	Reset     int64
-	Reached   bool
-}
+// // Context is the limit context.
+// type Context struct {
+// 	Limit     int64
+// 	Remaining int64
+// 	Reset     int64
+// 	Reached   bool
+// }
 
 // -----------------------------------------------------------------
 // Limiter
@@ -42,4 +42,9 @@ func (limiter *Limiter) Get(ctx context.Context, key string) (Context, error) {
 // Peek returns the limit for given identifier, without modification on current values.
 func (limiter *Limiter) Peek(ctx context.Context, key string) (Context, error) {
 	return limiter.Store.Peek(ctx, key, limiter.Rate)
+}
+
+// Update returns the limit for given identifier, without modification on current values.
+func (limiter *Limiter) Update(ctx context.Context, key string, value int64) (Context, error) {
+	return limiter.Store.Update(ctx, key, value, limiter.Rate)
 }

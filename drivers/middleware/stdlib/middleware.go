@@ -41,7 +41,7 @@ func (middleware *Middleware) Handler(h http.Handler) http.Handler {
 
 		w.Header().Add("X-RateLimit-Limit", strconv.FormatInt(context.Limit, 10))
 		w.Header().Add("X-RateLimit-Remaining", strconv.FormatInt(context.Remaining, 10))
-		w.Header().Add("X-RateLimit-Reset", strconv.FormatInt(context.Reset, 10))
+		w.Header().Add("X-RateLimit-Reset", strconv.FormatInt(context.ResetT, 10))
 
 		if context.Reached {
 			middleware.OnLimitReached(w, r)

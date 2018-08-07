@@ -41,7 +41,7 @@ func TestStoreSequentialAccess(t *testing.T, store limiter.Store) {
 
 			is.Equal(int64(3), lctx.Limit)
 			is.Equal(int64(3-i), lctx.Remaining)
-			is.True(math.Ceil(time.Since(time.Unix(lctx.Reset, 0)).Seconds()) <= 60)
+			is.True(math.Ceil(time.Since(time.Unix(lctx.ResetT, 0)).Seconds()) <= 60)
 
 			lctx, err = limiter.Peek(ctx, "foo")
 			is.NoError(err)
@@ -51,7 +51,7 @@ func TestStoreSequentialAccess(t *testing.T, store limiter.Store) {
 
 			is.Equal(int64(3), lctx.Limit)
 			is.True(lctx.Remaining == 0)
-			is.True(math.Ceil(time.Since(time.Unix(lctx.Reset, 0)).Seconds()) <= 60)
+			is.True(math.Ceil(time.Since(time.Unix(lctx.ResetT, 0)).Seconds()) <= 60)
 
 		}
 	}

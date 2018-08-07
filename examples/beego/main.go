@@ -1,17 +1,19 @@
 package main
+
 /*
-More comprehensive example: 
+More comprehensive example:
 https://gist.github.com/gadelkareem/5a087bfda1f673241d0ac65759156cfd
 */
 import (
-	"github.com/astaxie/beego"
-	"github.com/yourhe/limiter"
-	"github.com/yourhe/limiter/drivers/store/memory"
-	"github.com/astaxie/beego/context"
 	"net/http"
 	"strconv"
 	"strings"
+
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/context"
 	"github.com/astaxie/beego/logs"
+	"github.com/yourhe/limiter"
+	"github.com/yourhe/limiter/drivers/store/memory"
 )
 
 type rateLimiter struct {
@@ -66,7 +68,7 @@ func rateLimit(r *rateLimiter, ctx *context.Context) {
 	h := ctx.ResponseWriter.Header()
 	h.Add("X-RateLimit-Limit", strconv.FormatInt(limiterCtx.Limit, 10))
 	h.Add("X-RateLimit-Remaining", strconv.FormatInt(limiterCtx.Remaining, 10))
-	h.Add("X-RateLimit-Reset", strconv.FormatInt(limiterCtx.Reset, 10))
+	h.Add("X-RateLimit-Reset", strconv.FormatInt(limiterCtx.ResetT, 10))
 
 	if limiterCtx.Reached {
 		logs.Debug("Too Many Requests from %s on %s", ip, ctx.Input.URL())

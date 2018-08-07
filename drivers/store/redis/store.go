@@ -258,3 +258,7 @@ func (store *Store) ping() (bool, error) {
 
 	return (pong == "PONG"), nil
 }
+
+func (store *Store) Update(ctx context.Context, key string, value int64, rate limiter.Rate) (limiter.Context, error) {
+	panic("not implemented")
+}

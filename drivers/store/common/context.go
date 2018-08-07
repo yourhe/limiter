@@ -22,7 +22,7 @@ func GetContextFromState(now time.Time, rate limiter.Rate, expiration time.Time,
 	return limiter.Context{
 		Limit:     limit,
 		Remaining: remaining,
-		Reset:     reset,
+		ResetT:    reset,
 		Reached:   reached,
 	}
 }
